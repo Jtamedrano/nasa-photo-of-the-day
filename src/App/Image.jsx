@@ -6,7 +6,7 @@ function Image(props) {
   if (!data) return <p>Loading...</p>;
   return (
     <>
-      <img src={data.url} alt={data.title} />
+      <img src={data.hdurl} alt={data.title} />
     </>
   );
 }

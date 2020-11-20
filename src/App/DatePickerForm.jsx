@@ -1,17 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 
 function DatePickerForm(props) {
-  const date = new Date(props.date);
-  console.log(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.setDate(`${year}-${month}-${day}`);
+  };
   return (
-    <div>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <input
-        type="date"
-        value={`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}
-        onChange={(evt) => props.setDate(evt.target.value)}
+        type="number"
+        minLength="2"
+        maxLength="2"
+        placeholder="MM"
+        value={month}
+        onChange={(e) => setMonth(e.target.value)}
       />
-    </div>
+      <input
+        type="number"
+        minLength="2"
+        maxLength="2"
+        placeholder="DD"
+        value={day}
+        onChange={(e) => setDay(e.target.value)}
+      />
+      <input
+        type="number"
+        minLength="4"
+        maxLength="4"
+        placeholder="YYYY"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+      />
+      <input type="submit" value="Submit" />
+    </form>
   );
 }
 
